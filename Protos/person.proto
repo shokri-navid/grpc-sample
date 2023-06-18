@@ -1,0 +1,38 @@
+syntax = "proto3";
+option csharp_namespace="FirstGrpc";
+
+package Person;
+
+service PersonService {
+  rpc AddPerson(CreatePersonRequest) returns (GeneralResponse);
+  rpc GetAllPerson(GetAllRequest) returns(GetAllResponse);
+}
+
+message CreatePersonRequest{
+  string Name = 1; 
+  string Family = 2;
+  uint64 BirthDay = 3;
+}
+
+
+message GeneralResponse{
+  bool IsSuccessful = 1;
+  string Message = 2;
+}
+
+message GetAllRequest{
+  string query =1; 
+}
+message Person{
+  string Id = 1;
+  string Name = 2;
+  string Family = 3;
+  uint64 BirthDay = 4;
+}
+
+
+message GetAllResponse {
+  bool IsSuccessful = 1;
+  string Message = 2;
+  repeated Person Items = 3;
+}
